@@ -8,7 +8,7 @@ from sklearn.preprocessing import LabelEncoder
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model_path = "model/trained_model"
 
-# ========== Load Model & Tokenizer ==========
+# ========== Load Model & Tokenizer ========
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForSequenceClassification.from_pretrained(model_path).to(device)
 
