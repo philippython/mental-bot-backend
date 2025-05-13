@@ -1,11 +1,14 @@
 import pandas as pd
 import torch
+from pathlib import Path
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
 from torch.utils.data import Dataset
 import os
 
+
+model_path = "model/trained_model"
 os.environ["WANDB_DISABLED"] = "true"
 
 # Check for CUDA availability
@@ -128,7 +131,8 @@ except Exception as e:
 # ========== Training ==========
 print("Training model...")
 try:
-    if not os.path.exists("model/trained_model"): # Only train if the model doesn't exist
+    if Path(model_path).exists():
+        tokenizer = AutoTokenizer.from_pretrained(model_path)
         trainer.train()
         print("Training completed successfully.")
 
