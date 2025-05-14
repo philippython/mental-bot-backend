@@ -1,4 +1,5 @@
-import subprocess
+from model.training import load_tokenizer
+from model.training import *
 from fastapi import FastAPI
 from pydantic import BaseModel
 from model.chat_bot import classify_statement
@@ -7,8 +8,8 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 @app.on_event("startup")
-def run_training_if_needed():
-    subprocess.run(["python", "model/training.py"], check=True)
+def start_event():
+    load_tokenizer()
 
 origins = ["*"]
 
