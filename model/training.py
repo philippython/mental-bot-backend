@@ -17,8 +17,8 @@ def train():
     # ========== Load Datasets ==========
     print("Loading datasets...")
     try:
-        df_text = pd.read_csv("data/dementia.csv")
-        df_country = pd.read_csv("data/global_mental_health_stats.csv")
+        df_text = pd.read_csv("data/dementia.csv", low_memory=False)
+        df_country = pd.read_csv("data/global_mental_health_stats.csv", low_memory=False)
         print("Datasets loaded successfully.")
     except Exception as e:
         print(f"Error loading datasets: {e}")
